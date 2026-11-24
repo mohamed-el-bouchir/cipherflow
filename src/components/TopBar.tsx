@@ -1,8 +1,8 @@
 import {Pause, Play} from 'lucide-react';
 
 interface TopBarProps {
-  activeView: 'workbench' | 'presets';
-  onSelectView: (view: 'workbench' | 'presets') => void;
+  activeView: 'workbench' | 'presets' | 'guide';
+  onSelectView: (view: 'workbench' | 'presets' | 'guide') => void;
   isPlaying: boolean;
   canPlay: boolean;
   onTogglePlay: () => void;
@@ -39,6 +39,15 @@ export function TopBar({
         </button>
         <button
           type="button"
+          onClick={() => onSelectView('guide')}
+          className={`whitespace-nowrap shrink-0 transition-colors hover:text-slate-900 ${
+            activeView === 'guide' ? 'text-slate-900 underline decoration-sky-600 decoration-2 underline-offset-8' : ''
+          }`}
+        >
+          Guide
+        </button>
+        <button
+          type="button"
           onClick={() => onSelectView('presets')}
           className={`whitespace-nowrap shrink-0 transition-colors hover:text-slate-900 ${
             activeView === 'presets' ? 'text-slate-900 underline decoration-sky-600 decoration-2 underline-offset-8' : ''
@@ -48,18 +57,20 @@ export function TopBar({
         </button>
       </nav>
 
-      {/* Zone 3: Primary action */}
-      <div className="flex items-center shrink-0">
-        <button
-          type="button"
-          disabled={!canPlay}
-          onClick={onTogglePlay}
-          className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-sky-700 disabled:cursor-not-allowed disabled:bg-slate-300 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-        >
-          {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-          <span>{isPlaying ? 'Pause' : 'Start Recipe'}</span>
-        </button>
-      </div>
+      {/* Zone 3: Primary action (Workbench only) */}
+      {activeView === 'workbench' && (
+        <div className="flex items-center shrink-0">
+          <button
+            type="button"
+            disabled={!canPlay}
+            onClick={onTogglePlay}
+            className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-sky-700 disabled:cursor-not-allowed disabled:bg-slate-300 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          >
+            {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
+            <span>{isPlaying ? 'Pause' : 'Start Recipe'}</span>
+          </button>
+        </div>
+      )}
     </header>
   );
 }

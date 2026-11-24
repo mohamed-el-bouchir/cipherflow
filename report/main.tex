@@ -51,14 +51,14 @@
 \newcommand{\question}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
 
 \newcommand{\screenshot}[3][0.75]{%
-  \IfFileExists{./imgs/#2}{%
+  \IfFileExists{./assets/images/#2}{%
     \begin{figure}[H]\centering
-      \includegraphics[width=#1\textwidth]{./imgs/#2}
+      \includegraphics[width=#1\textwidth]{./assets/images/#2}
       \caption{#3}
     \end{figure}}{%
     \begin{figure}[H]\centering
       \fbox{\parbox[c][5cm][c]{#1\textwidth}{\centering
-        \textbf{CAPTURE A INSERER}\\[1ex]\texttt{imgs/\detokenize{#2}}}}
+        \textbf{CAPTURE A INSERER}\\[1ex]\texttt{assets/images/\detokenize{#2}}}}
       \caption{#3}
     \end{figure}}%
 }
@@ -69,12 +69,12 @@
 \newcommand*{\makeCustomTitle}{
     \newgeometry{margin=2.5cm}
     \begin{titlepage}
-        \ThisLRCornerWallPaper{1.2}{./background.jpg}
+        \ThisLRCornerWallPaper{1.2}{./assets/branding/background.jpg}
         \setlength{\parindent}{0pt}
 
         \begin{minipage}[t][0.25\textheight]{\textwidth}
             \begin{center}
-                \includegraphics[height=0.15\textheight]{./LOGO_FSTM.png}
+                \includegraphics[height=0.15\textheight]{./assets/branding/LOGO_FSTM.png}
             \end{center}
             \vspace{2ex}
             \begin{center}
@@ -164,7 +164,7 @@ evoluer le projet au-dela du premier draft :
         pour garantir une installation et un demarrage fluides sans conflits de versions.
 \end{itemize}
 
-\screenshot[0.45]{github_repo.png}{Apercu du depot GitHub officiel avec documentation et README}
+\screenshot[0.45]{github-repository.png}{Apercu du depot GitHub officiel avec documentation et README}
 
 \question{Presentation du projet et environnement technique}
 
@@ -181,7 +181,7 @@ La pile technique utilisee comprend :
   \item \textbf{Lucide React} : bibliotheque d'icones vectorielles.
 \end{itemize}
 
-\screenshot[0.9]{screenshot1.png}{Interface de CipherFlow avec les ameliorations d'agencement}
+\screenshot[0.9]{workbench-initial.png}{Interface de CipherFlow avec les ameliorations d'agencement}
 
 \question{Architecture du workbench et pipeline d'operations}
 
@@ -199,9 +199,9 @@ L'interface de travail s'organise selon cinq zones principales :
         et du resultat final global.
 \end{enumerate}
 
-\screenshot[0.9]{screenshot2.png}{Animation pas a pas de l'operation Caesar Cipher}
+\screenshot[0.9]{pipeline-caesar.png}{Animation pas a pas de l'operation Caesar Cipher}
 
-\screenshot[0.9]{screenshot3.png}{Vue du pipeline multi-etapes avec calcul des sorties}
+\screenshot[0.9]{pipeline-multistep.png}{Vue du pipeline multi-etapes avec calcul des sorties}
 
 \question{Systeme d'extension des operations}
 

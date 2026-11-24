@@ -108,7 +108,7 @@ function computeBase64Trace(input: string, params: Record<string, any>): Algorit
 
   if (decode) {
     const decodedResult = decodeBase64Safe(input);
-    if (!decodedResult.ok) {
+    if (decodedResult.ok === false) {
       return {
         frames: [
           {

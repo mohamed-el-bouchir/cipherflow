@@ -7,6 +7,7 @@ import {InputPanel, OutputPanel} from './components/IOPanels';
 import {PresetsView} from './components/PresetsView';
 import {RecipePipeline} from './components/RecipePipeline';
 import {TopBar} from './components/TopBar';
+import {GuidePage} from './pages/Guide/GuidePage';
 
 const SAVED_RECIPES_KEY = 'cipherflow_saved_recipes_v1';
 
@@ -44,7 +45,7 @@ function loadStoredRecipes(): PresetRecipe[] {
 }
 
 export default function App() {
-  const [activeView, setActiveView] = useState<'workbench' | 'presets'>('workbench');
+  const [activeView, setActiveView] = useState<'workbench' | 'presets' | 'guide'>('workbench');
   const [addOpOpen, setAddOpOpen] = useState(false);
 
   const [input, setInput] = useState(PRESET_RECIPES[0].sampleInput);
@@ -243,7 +244,9 @@ export default function App() {
         onTogglePlay={handleTogglePlay}
       />
 
-      {activeView === 'presets' ? (
+      {activeView === 'guide' ? (
+        <GuidePage />
+      ) : activeView === 'presets' ? (
         <main className="flex-1">
           <PresetsView
             savedRecipes={savedRecipes}
